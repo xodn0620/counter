@@ -28,11 +28,66 @@
       position: relative;
       height: 320px;
     }
+    .counter-center-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      z-index: 1;
+    }
+    .circle-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 2px solid #2196f3;
+      background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 2px 8px #2196f355;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      outline: none;
+      user-select: none;
+      position: absolute;
+      z-index: 2;
+    }
+    .minus-btn {
+      left: 18px;
+      top: 18px;
+      background: linear-gradient(135deg, #c62828 0%, #ad0000 100%);
+      border: 2px solid #ad0000;
+      box-shadow: 0 2px 8px #ad000088;
+      font-size: 2.8rem;
+    }
+    .minus-btn:active {
+      background: linear-gradient(135deg, #ad0000 0%, #c62828 100%);
+    }
+    .plus-btn {
+      right: 18px;
+      top: 18px;
+      background: linear-gradient(135deg, #008000 0%, #005f00 100%);
+      border: 2px solid #005f00;
+      box-shadow: 0 2px 8px #00800088;
+      font-size: 2.3rem;
+    }
+    .plus-btn:active {
+      background: linear-gradient(135deg, #005f00 0%, #008000 100%);
+    }
     .count {
       font-size: 5rem;
       font-weight: bold;
       color: #fff;
-      margin-bottom: 40px;
       transition: color 0.2s, box-shadow 0.2s;
       width: 180px;
       height: 180px;
@@ -47,16 +102,8 @@
       border: 6px solid #2196f3;
       font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
       letter-spacing: 2px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      margin-bottom: 0;
-    }
-    .count:active {
-      box-shadow: 0 2px 8px #1565c099, 0 1px 2px #1565c0 inset;
-      color: #fff;
-      background: #1565c0;
+      margin: 0 18px;
+      position: static;
     }
     .btn {
       font-size: 1.1rem;
@@ -91,7 +138,7 @@
       min-width: 0;
       min-height: 0;
       border-radius: 50%;
-      font-size: 0.95rem;
+      font-size: 1.6rem;
       padding: 0;
       z-index: 2;
       box-shadow: 0 2px 8px #005bea55;
@@ -152,7 +199,11 @@
 </head>
 <body>
   <div class="counter-container">
-    <div id="count" class="count" onclick="increment()">0</div>
+    <button class="circle-btn minus-btn" onclick="decrement()">-</button>
+    <button class="circle-btn plus-btn" onclick="increment()">+</button>
+    <div class="counter-center-row">
+      <div id="count" class="count" onclick="increment()">0</div>
+    </div>
     <button class="btn reset-btn" onclick="showConfirmPopup()">⟳</button>
   </div>
   <div id="confirm-popup" class="popup-bg" style="display:none;">
@@ -170,6 +221,10 @@
     const popup = document.getElementById('confirm-popup');
     function increment() {
       count++;
+      countEl.textContent = count;
+    }
+    function decrement() {
+      count--;
       countEl.textContent = count;
     }
     function showConfirmPopup() {
