@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>모바일 카운터</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    }
+    .counter-container {
+      background: rgba(255,255,255,0.9);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(60,60,60,0.15);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 280px;
+    }
+    .count {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #43c6ac;
+      margin-bottom: 24px;
+      transition: color 0.2s;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #43c6ac 0%, #f8ffae 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(67,198,172,0.15);
+      margin-bottom: 32px;
+      cursor: pointer;
+      user-select: none;
+      border: 4px solid #43c6ac;
+    }
+    .btn {
+      width: 180px;
+      padding: 16px 0;
+      margin: 8px 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #43c6ac 0%, #191654 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(67,198,172,0.15);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn:active {
+      background: linear-gradient(90deg, #191654 0%, #43c6ac 100%);
+      transform: scale(0.97);
+    }
+    .reset-btn {
+      background: linear-gradient(90deg, #ff5858 0%, #f09819 100%);
+    }
+    .reset-btn:active {
+      background: linear-gradient(90deg, #f09819 0%, #ff5858 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="counter-container">
+    <div id="count" class="count" onclick="increment()">0</div>
+    <button class="btn reset-btn" onclick="reset()">초기화</button>
+  </div>
+  <script>
+    let count = 0;
+    const countEl = document.getElementById('count');
+    function increment() {
+      count++;
+      countEl.textContent = count;
+      countEl.style.color = '#191654';
+      setTimeout(() => countEl.style.color = '#43c6ac', 150);
+    }
+    function reset() {
+      count = 0;
+      countEl.textContent = count;
+      countEl.style.color = '#ff5858';
+      setTimeout(() => countEl.style.color = '#43c6ac', 150);
+    }
+  </script>
+</body>
+</html> 
